@@ -27,7 +27,7 @@ public class TransactionServiceImplTest {
     private TransactionDao dao;
 
     @Test
-    public void recordTransactionSuccessful() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException {
+    public void recordTransactionSuccessful() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException, OutOfBoundAmountException {
         Transaction transaction = getTransaction();
         service.recordTransaction(transaction);
 
@@ -35,7 +35,7 @@ public class TransactionServiceImplTest {
     }
 
     @Test
-    public void recordTransactionWithWrongTimeFormat() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException {
+    public void recordTransactionWithWrongTimeFormat() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException, OutOfBoundAmountException {
         doThrow(WrongTimeFormatException.class).when(dao).createTransaction(any());
 
         assertThrows(WrongTimeFormatException.class, ()->{
@@ -44,7 +44,7 @@ public class TransactionServiceImplTest {
     }
 
     @Test
-    public void recordTransactionWithUnknownProduct() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException {
+    public void recordTransactionWithUnknownProduct() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException, OutOfBoundAmountException {
         doThrow(UnknownProductException.class).when(dao).createTransaction(any());
 
         assertThrows(UnknownProductException.class, ()->{
@@ -53,7 +53,7 @@ public class TransactionServiceImplTest {
     }
 
     @Test
-    public void recordTransactionWithUnknownCustomer() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException {
+    public void recordTransactionWithUnknownCustomer() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException, OutOfBoundAmountException {
         doThrow(UnknownCustomerException.class).when(dao).createTransaction(any());
 
         assertThrows(UnknownCustomerException.class, ()->{
@@ -62,7 +62,7 @@ public class TransactionServiceImplTest {
     }
 
     @Test
-    public void recordTransactionWithUnknownGasStation() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException {
+    public void recordTransactionWithUnknownGasStation() throws WrongTimeFormatException, UnknownProductException, UnknownCustomerException, UnknownGasStationException, OutOfBoundAmountException {
         doThrow(UnknownGasStationException.class).when(dao).createTransaction(any());
 
         assertThrows(UnknownGasStationException.class, ()->{

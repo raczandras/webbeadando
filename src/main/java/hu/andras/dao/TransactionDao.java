@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface TransactionDao {
     Collection<Transaction> readAll();
-    void createTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException;
+    void createTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException;
     void deleteTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, UnknownTransactionException, WrongTimeFormatException;
 
     void updateFirstMatch(Transaction transaction, Transaction updated) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, UnknownTransactionException, WrongTimeFormatException;

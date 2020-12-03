@@ -1,6 +1,7 @@
 package hu.andras.controller;
 
 import hu.andras.controller.dto.GasStationDto;
+import hu.andras.controller.dto.GasStationOutDto;
 import hu.andras.controller.dto.GasStationUpdateDto;
 import hu.andras.exceptions.UnknownGasStationException;
 import hu.andras.model.GasStation;
@@ -22,10 +23,11 @@ public class GasStationController {
     private final GasStationService service;
 
     @GetMapping("/GasStation")
-    public Collection<GasStationDto> listGasStations(){
+    public Collection<GasStationOutDto> listGasStations(){
         return service.getAllGasStations()
                 .stream()
-                .map( model -> GasStationDto.builder()
+                .map( model -> GasStationOutDto.builder()
+                        .gasStationId(model.getGasStationId())
                         .chainId(model.getChainId())
                         .country(model.getCountry())
                         .segment(model.getSegment())

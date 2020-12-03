@@ -52,7 +52,7 @@ public class TransactionController {
                     transactionDto.getAmount(),
                     transactionDto.getPrice()
             ));
-        } catch (UnknownCustomerException | UnknownGasStationException | UnknownProductException | WrongTimeFormatException e){
+        } catch (UnknownCustomerException | UnknownGasStationException | UnknownProductException | WrongTimeFormatException | OutOfBoundAmountException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

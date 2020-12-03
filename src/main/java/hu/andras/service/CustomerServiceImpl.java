@@ -3,6 +3,7 @@ package hu.andras.service;
 import hu.andras.dao.CustomerDao;
 import hu.andras.exceptions.UnknownCustomerException;
 import hu.andras.model.Customer;
+import hu.andras.model.CustomerOut;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerDao customerDao;
 
     @Override
-    public Collection<Customer> getAllCustomers() {
+    public Collection<CustomerOut> getAllCustomers() {
         return customerDao.readAll();
     }
 

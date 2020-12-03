@@ -1,6 +1,7 @@
 package hu.andras.controller;
 
 import hu.andras.controller.dto.CustomerDto;
+import hu.andras.controller.dto.CustomerOutDto;
 import hu.andras.controller.dto.CustomerUpdateDto;
 import hu.andras.exceptions.UnknownCustomerException;
 import hu.andras.model.Customer;
@@ -22,10 +23,11 @@ public class CustomerController {
     private final CustomerService service;
 
     @GetMapping("/customer")
-    public Collection<CustomerDto> listCustomers(){
+    public Collection<CustomerOutDto> listCustomers(){
         return service.getAllCustomers()
                 .stream()
-                .map( model -> CustomerDto.builder()
+                .map( model -> CustomerOutDto.builder()
+                        .customerId(model.getCustomerId())
                     .segment(model.getSegment())
                     .currency(model.getCurrency())
                     .build())

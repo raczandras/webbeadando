@@ -4,6 +4,7 @@ import hu.andras.dao.entity.CustomerEntity;
 import hu.andras.dao.entity.CustomerRepository;
 import hu.andras.exceptions.UnknownCustomerException;
 import hu.andras.model.Customer;
+import hu.andras.model.CustomerOut;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,10 @@ public class CustomerDaoImpl implements CustomerDao {
     private final CustomerRepository customerRepository;
 
     @Override
-    public Collection<Customer> readAll() {
+    public Collection<CustomerOut> readAll() {
         return StreamSupport.stream(customerRepository.findAll().spliterator(), false)
-                .map(entity -> new Customer(
+                .map(entity -> new CustomerOut(
+                        entity.getCustomerId(),
                         entity.getSegment(),
                         entity.getCurrency()
                 ))

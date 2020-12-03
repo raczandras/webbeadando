@@ -27,7 +27,7 @@ public class TransactionDaoImplTest {
     private TransactionRepository transactionRepository;
 
     @Test
-    public void createTransactionSuccessfull() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException{
+    public void createTransactionSuccessfull() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException{
 
         doReturn(CustomerEntity.builder().customerId(1).build())
                 .when(dao).queryCustomer(anyInt());
@@ -45,7 +45,7 @@ public class TransactionDaoImplTest {
     }
 
     @Test
-    public void createTransactionWithWrongTimeFormat() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException{
+    public void createTransactionWithWrongTimeFormat() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException{
 
         doThrow(WrongTimeFormatException.class).when(dao).checkTimeFormat(anyString());
 
@@ -55,7 +55,7 @@ public class TransactionDaoImplTest {
     }
 
     @Test
-    public void createTransactionWithUnknownProduct() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException{
+    public void createTransactionWithUnknownProduct() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException,  OutOfBoundAmountException{
         doReturn(CustomerEntity.builder().customerId(1).build())
                 .when(dao).queryCustomer(anyInt());
 
@@ -70,7 +70,7 @@ public class TransactionDaoImplTest {
     }
 
     @Test
-    public void createTransactionWithUnknownCustomer() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException{
+    public void createTransactionWithUnknownCustomer() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException{
 
         doThrow(UnknownCustomerException.class).when(dao).queryCustomer(anyInt());
 
@@ -80,7 +80,7 @@ public class TransactionDaoImplTest {
     }
 
     @Test
-    public void createTransactionWithUnknownGasStation() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException{
+    public void createTransactionWithUnknownGasStation() throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException{
         doReturn(CustomerEntity.builder().customerId(1).build())
                 .when(dao).queryCustomer(anyInt());
 

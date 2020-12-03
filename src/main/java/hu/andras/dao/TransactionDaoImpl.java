@@ -40,8 +40,11 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public void createTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException {
+    public void createTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException {
         TransactionEntity transactionEntity;
+
+        checkAmount(transaction.getAmount());
+        checkPrice(transaction.getPrice());
 
         checkTimeFormat(transaction.getTime());
 
@@ -62,6 +65,18 @@ public class TransactionDaoImpl implements TransactionDao {
         }
         catch(Exception e){
             log.error(e.getMessage());
+        }
+    }
+
+    private void checkPrice(double price) throws OutOfBoundAmountException {
+        if(price <= 0){
+            throw new OutOfBoundAmountException("Price can't be less than 1");
+        }
+    }
+
+    private void checkAmount(int amount) throws OutOfBoundAmountException {
+        if(amount <= 0){
+            throw new OutOfBoundAmountException("Amount can't be less than 1");
         }
     }
 

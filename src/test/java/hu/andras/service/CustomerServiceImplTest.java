@@ -3,6 +3,7 @@ package hu.andras.service;
 import hu.andras.dao.CustomerDao;
 import hu.andras.exceptions.UnknownCustomerException;
 import hu.andras.model.Customer;
+import hu.andras.model.CustomerOut;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -74,7 +75,7 @@ public class CustomerServiceImplTest {
     public void readAllCustomers(){
         when(dao.readAll()).thenReturn(getDefaultCustomers());
 
-        Collection<Customer> actual = service.getAllCustomers();
+        Collection<CustomerOut> actual = service.getAllCustomers();
 
         assertThat(getDefaultCustomers(), is(actual));
     }
@@ -94,17 +95,20 @@ public class CustomerServiceImplTest {
         );
     }
 
-    private Collection<Customer> getDefaultCustomers(){
+    private Collection<CustomerOut> getDefaultCustomers(){
         return Arrays.asList(
-            new Customer(
+            new CustomerOut(
+                    5,
                   "SME",
                   "EUR"
             ),
-            new Customer(
+            new CustomerOut(
+                    4,
                     "HUN",
                     "HUF"
             ),
-            new Customer(
+            new CustomerOut(
+                    3,
                     "ENG",
                     "GPB"
             ));

@@ -22,7 +22,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void recordTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException {
+    public void recordTransaction(Transaction transaction) throws UnknownProductException, UnknownCustomerException, UnknownGasStationException, WrongTimeFormatException, OutOfBoundAmountException {
         transactionDao.createTransaction(transaction);
     }
 

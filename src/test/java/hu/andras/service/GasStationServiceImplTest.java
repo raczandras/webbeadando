@@ -3,6 +3,7 @@ package hu.andras.service;
 import hu.andras.dao.GasStationDao;
 import hu.andras.exceptions.UnknownGasStationException;
 import hu.andras.model.GasStation;
+import hu.andras.model.GasStationOut;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -74,7 +75,7 @@ public class GasStationServiceImplTest {
     public void readAllGasStations(){
         when(dao.readAll()).thenReturn(getDefaultGasStations());
 
-        Collection<GasStation> actual = service.getAllGasStations();
+        Collection<GasStationOut> actual = service.getAllGasStations();
 
         assertThat(getDefaultGasStations(), is(actual));
     }
@@ -96,19 +97,22 @@ public class GasStationServiceImplTest {
         );
     }
 
-    private Collection<GasStation> getDefaultGasStations(){
+    private Collection<GasStationOut> getDefaultGasStations(){
         return Arrays.asList(
-                new GasStation(
+                new GasStationOut(
+                        32,
                         3,
                         "ENG",
                         "GBP"
                 ),
-                new GasStation(
+                new GasStationOut(
+                        31,
                         2,
                         "HUN",
                         "HUF"
                 ),
-                new GasStation(
+                new GasStationOut(
+                        30,
                         4,
                         "ROM",
                         "RAM"

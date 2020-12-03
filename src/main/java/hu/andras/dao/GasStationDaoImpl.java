@@ -4,6 +4,7 @@ import hu.andras.dao.entity.GasStationEntity;
 import hu.andras.dao.entity.GasStationRepository;
 import hu.andras.exceptions.UnknownGasStationException;
 import hu.andras.model.GasStation;
+import hu.andras.model.GasStationOut;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,10 @@ public class GasStationDaoImpl implements GasStationDao {
     private final GasStationRepository gasStationRepository;
 
     @Override
-    public Collection<GasStation> readAll() {
+    public Collection<GasStationOut> readAll() {
         return StreamSupport.stream(gasStationRepository.findAll().spliterator(), false)
-                .map(entity -> new GasStation(
+                .map(entity -> new GasStationOut(
+                        entity.getGasStationId(),
                         entity.getChainId(),
                         entity.getCountry(),
                         entity.getSegment()

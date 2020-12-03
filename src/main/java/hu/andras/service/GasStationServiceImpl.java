@@ -3,6 +3,7 @@ package hu.andras.service;
 import hu.andras.dao.GasStationDao;
 import hu.andras.exceptions.UnknownGasStationException;
 import hu.andras.model.GasStation;
+import hu.andras.model.GasStationOut;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class GasStationServiceImpl implements GasStationService {
     private final GasStationDao gasStationDao;
 
     @Override
-    public Collection<GasStation> getAllGasStations() {
+    public Collection<GasStationOut> getAllGasStations() {
         return gasStationDao.readAll();
     }
 
